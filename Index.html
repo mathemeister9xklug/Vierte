@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathe Übungsblatt Klasse 4</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 40px;
+            font-size: 1.4em;
+        }
+
+        .section-desc {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .task-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        /* Inputs */
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            text-align: center;
+            width: 120px;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* Feedback Classes */
+        .correct { background-color: #e8f5e9; border-color: #4caf50 !important; color: #2e7d32; }
+        .incorrect { background-color: #ffebee; border-color: #e53935 !important; color: #c62828; }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+
+        /* Diagramm Styles */
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            border-bottom: 2px solid #333;
+            border-left: 2px solid #333;
+            padding: 10px;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .bar-group { text-align: center; flex: 1; }
+        .bar {
+            background-color: #3498db;
+            width: 40px;
+            margin: 0 auto;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+        }
+        .bar span {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .bar-label { margin-top: 5px; font-weight: bold; font-size: 0.9em; }
+
+        /* Buttons */
+        .btn-group { margin-top: 15px; }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .btn-check { background-color: #27ae60; color: white; }
+        .btn-check:hover { background-color: #219150; }
+        .btn-solve { background-color: #95a5a6; color: white; }
+        .btn-solve:hover { background-color: #7f8c8d; }
+
+        .solution-text {
+            margin-top: 10px;
+            color: #2980b9;
+            font-weight: bold;
+            display: none;
+            padding: 10px;
+            background-color: #ebf5fb;
+            border-radius: 5px;
+        }
+
+        /* Print styles */
+        @media print {
+            button { display: none; }
+            .section-desc { display: none; }
+            input { border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mathe-Training: Klasse 4</h1>
+    <p style="text-align: center;">Alle Themen aus dem Lehrplan: Große Zahlen, Fachbegriffe, Rechengesetze, Diagramme & Sachaufgaben.</p>
+
+    <section id="sec-begriffe">
+        <h2>1. Fachbegriffe</h2>
+        <div class="task-box">
+            <p>Wie heißen die Fachbegriffe? Fülle die Lücken aus.</p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    1. <input type="text" data-ans="Summand"> + <input type="text" data-ans="Summand"> = <input type="text" data-ans="Summe">
+                </div>
+                <div>
+                    2. <input type="text" data-ans="Minuend"> - <input type="text" data-ans="Subtrahend"> = <input type="text" data-ans="Differenz">
+                </div>
+                <div>
+                    3. <input type="text" data-ans="Faktor"> • <input type="text" data-ans="Faktor"> = <input type="text" data-ans="Produkt">
+                </div>
+                <div>
+                    4. <input type="text" data-ans="Dividend"> : <input type="text" data-ans="Divisor"> = <input type="text" data-ans="Quotient">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn-check" onclick="checkInputs('sec-begriffe')">Prüfen</button>
+                <button class="btn-solve" onclick="showSol('sol-begriffe')">Lösung anzeigen</button>
+            </div>
+            <div id="sol-begriffe" class="solution-text">
+                1. Summand + Summand = Summe<br>
+                2. Minuend - Subtrahend = Differenz<br>
+                3. Faktor • Faktor = Produkt<br>
+                4. Dividend : Divisor = Quotient
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-zahlen">
+        <h2>2. Große Zahlen (bis 1.000.000)</h2>
+        
+        <div class="task-box">
+            <h3>A. Zahlen schreiben und zerlegen</h3>
+            <div style="margin-bottom: 15px;">
+                <label>Schreibe als Zahl: "Dreihundertfünftausendzwanzig"</label>
+                <input type="number" data-ans="305020">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label>Zerlege die Zahl: 400.000 + 70.000 + 500 + 3 = ?</label>
+                <input type="number" data-ans="470503">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label>Wie viele Nullen hat eine Million?</label>
+                <input type="number" data-ans="6">
+            </div>
+
+            <h3>B. Runden</h3>
+            <table style="width: 100%; text-align: left; border-spacing: 0 10px;">
+                <tr>
+                    <td>Runde <strong>14.532</strong> auf Tausender:</td>
+                    <td><input type="number" data-ans="15000"></td>
+                </tr>
+                <tr>
+                    <td>Runde <strong>349.999</strong> auf Zehntausender:</td>
+                    <td><input type="number" data-ans="350000"></td>
+                </tr>
+                <tr>
+                    <td>Runde <strong>8.450</strong> auf Hunderter:</td>
+                    <td><input type="number" data-ans="8500"></td>
+                </tr>
+            </table>
+
+            <div class="btn-group">
+                <button class="btn-check" onclick="checkInputs('sec-zahlen')">Prüfen</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-gesetze">
+        <h2>3. Rechengesetze (Punkt vor Strich & Klammern)</h2>
+        <div class="task-box">
+            <p>Berechne. Beachte die Vorrangregeln!</p>
+            <div class="grid-2">
+                <div>
+                    <label>50 + 5 • 4 =</label>
+                    <input type="number" data-ans="70">
+                </div>
+                <div>
+                    <label>(20 - 5) • 3 =</label>
+                    <input type="number" data-ans="45">
+                </div>
+                <div>
+                    <label>100 - 40 : 4 =</label>
+                    <input type="number" data-ans="90">
+                </div>
+                <div>
+                    <label>8 • 8 + 20 =</label>
+                    <input type="number" data-ans="84">
+                </div>
+                <div>
+                    <label>(12 + 8) : (10 - 5) =</label>
+                    <input type="number" data-ans="4">
+                </div>
+                <div>
+                    <label>4 • 25 - 10 • 5 =</label>
+                    <input type="number" data-ans="50">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn-check" onclick="checkInputs('sec-gesetze')">Prüfen</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-schriftlich">
+        <h2>4. Schriftliche Rechenverfahren</h2>
+        <div class="task-box">
+            <p>Nimm dir ein Blatt Papier für den Rechenweg und trage hier das Ergebnis ein.</p>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>Addition</h3>
+                    <label>45.392 + 12.845</label>
+                    <input type="number" data-ans="58237">
+                    <br><br>
+                    <label>128.500 + 342.999</label>
+                    <input type="number" data-ans="471499">
+                </div>
+                <div>
+                    <h3>Subtraktion</h3>
+                    <label>85.420 - 32.115</label>
+                    <input type="number" data-ans="53305">
+                    <br><br>
+                    <label>600.000 - 245.350</label>
+                    <input type="number" data-ans="354650">
+                </div>
+            </div>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+            <div>
+                <h3>Schriftliche Multiplikation</h3>
+                <div class="grid-2">
+                    <div>
+                        <label>3.421 • 6</label>
+                        <input type="number" data-ans="20526">
+                    </div>
+                    <div>
+                        <label>512 • 24</label>
+                        <input type="number" data-ans="12288">
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-check" onclick="checkInputs('sec-schriftlich')">Prüfen</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-diagramm">
+        <h2>5. Diagramme auswerten</h2>
+        <div class="task-box">
+            <p>Die 4. Klasse hat eine Umfrage gemacht: "Was ist dein Lieblingseis?"</p>
+            
+            <div class="chart-container">
+                <div class="bar-group">
+                    <div class="bar" style="height: 60px;"><span>6</span></div>
+                    <div class="bar-label">Vanille</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height: 120px;"><span>12</span></div>
+                    <div class="bar-label">Schoko</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height: 40px;"><span>4</span></div>
+                    <div class="bar-label">Erdbeer</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height: 80px;"><span>8</span></div>
+                    <div class="bar-label">Nuss</div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div>
+                    <label>1. Welches Eis ist am beliebtesten?</label>
+                    <input type="text" data-ans="Schoko">
+                </div>
+                <div>
+                    <label>2. Wie viele Kinder mögen Nuss?</label>
+                    <input type="number" data-ans="8">
+                </div>
+                <div>
+                    <label>3. Wie viele Kinder wurden insgesamt befragt?</label>
+                    <input type="number" data-ans="30">
+                </div>
+                <div>
+                    <label>4. Wie viele Kinder mögen Schoko mehr als Vanille?</label>
+                    <input type="number" data-ans="6">
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-check" onclick="checkInputs('sec-diagramm')">Prüfen</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-sach">
+        <h2>6. Sachrechnen</h2>
+        <div class="task-box">
+            <div style="margin-bottom: 25px;">
+                <h3>Aufgabe 1: Der Ausflug</h3>
+                <p>Ein Busunternehmen bietet eine Fahrt zum Zoo an. Ein Bus hat 50 Plätze. Es haben sich 4 volle Busse und ein Bus, der zur Hälfte besetzt ist, angemeldet. Wie viele Personen fahren mit?</p>
+                <label>Antwort (nur Zahl):</label>
+                <input type="number" data-ans="225">
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Aufgabe 2: Einkaufen</h3>
+                <p>Tim kauft ein neues Fahrrad für 349 €. Er kauft außerdem einen Helm für 45 € und ein Schloss für 29 €. Er bezahlt mit einem 500 € Schein.</p>
+                <label>Wie viel Euro muss er bezahlen? (€)</label>
+                <input type="number" data-ans="423">
+                <br>
+                <label style="margin-top:10px;">Wie viel Rückgeld bekommt er? (€)</label>
+                <input type="number" data-ans="77">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-check" onclick="checkInputs('sec-sach')">Prüfen</button>
+                <button class="btn-solve" onclick="showSol('sol-sach')">Lösungswege anzeigen</button>
+            </div>
+            <div id="sol-sach" class="solution-text">
+                <strong>Aufgabe 1:</strong><br>
+                4 volle Busse: 4 • 50 = 200 Personen.<br>
+                1 halber Bus: 50 : 2 = 25 Personen.<br>
+                Zusammen: 200 + 25 = 225 Personen.<br><br>
+                <strong>Aufgabe 2:</strong><br>
+                Kosten: 349 + 45 + 29 = 423 €.<br>
+                Rückgeld: 500 - 423 = 77 €.
+            </div>
+        </div>
+    </section>
+
+<script>
+    function checkInputs(sectionId) {
+        const section = document.getElementById(sectionId);
+        const inputs = section.querySelectorAll('input');
+
+        inputs.forEach(input => {
+            let userVal = input.value.trim();
+            let correctVal = input.getAttribute('data-ans');
+
+            // Einfache Normalisierung für Text (Groß/klein egal)
+            if (input.type === "text") {
+                userVal = userVal.toLowerCase();
+                correctVal = correctVal.toLowerCase();
+            }
+
+            if (userVal === correctVal) {
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+            } else {
+                input.classList.add('incorrect');
+                input.classList.remove('correct');
+            }
+        });
+    }
+
+    function showSol(id) {
+        const el = document.getElementById(id);
+        if (el.style.display === "block") {
+            el.style.display = "none";
+        } else {
+            el.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
